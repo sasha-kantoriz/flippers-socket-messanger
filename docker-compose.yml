@@ -1,0 +1,17 @@
+version: '2'
+services:
+        server:
+                image: ayush
+                environment:
+                        PORT: 9000
+                command: python3 -u /app/app.py
+                ports:
+                        - "9000:9000"
+        client:
+                image: ayush
+                environment:
+                        SERVER: server
+                        PORT: 9000
+                command: python3 /app/client.py
+                depends_on:
+                        - server
